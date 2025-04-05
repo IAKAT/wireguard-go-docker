@@ -1,6 +1,6 @@
 .PHONY: buildx_container build_and_push
 
-DOCKER_REGISTRY ?= masipcat/wireguard-go
+DOCKER_REGISTRY ?= ghcr.io/iakat/wireguard-go-docker
 
 buildx_container:
 	docker buildx create \

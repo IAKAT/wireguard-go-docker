@@ -1,6 +1,4 @@
-# wireguard-go docker
-
-[![](https://img.shields.io/docker/v/masipcat/wireguard-go.svg?sort=semver)](https://hub.docker.com/r/masipcat/wireguard-go/tags) [![](https://img.shields.io/docker/pulls/masipcat/wireguard-go.svg)](https://hub.docker.com/r/masipcat/wireguard-go/tags) [![](https://img.shields.io/docker/image-size/masipcat/wireguard-go.svg)](https://hub.docker.com/r/masipcat/wireguard-go/tags)
+# wireguard-go docker - Mullvad DAITA fork
 
 ## Setup
 
@@ -8,10 +6,10 @@ First of all you need a key pair for the server. Use the following command to ge
 
 ```bash
 # Generate privatekey
-docker run --rm -i masipcat/wireguard-go wg genkey > privatekey
+docker run --rm -i ghcr.io/iakat/wireguard-go-docker wg genkey > privatekey
 
 # Generate publickey from privatekey
-docker run --rm -i masipcat/wireguard-go wg pubkey < privatekey > publickey
+docker run --rm -i ghcr.io/iakat/wireguard-go-docker wg pubkey < privatekey > publickey
 ```
 
 ## Run server
@@ -23,7 +21,7 @@ docker run --rm -i masipcat/wireguard-go wg pubkey < privatekey > publickey
 version: '3.3'
 services:
   wireguard:
-    image: masipcat/wireguard-go:latest
+    image: ghcr.io/iakat/wireguard-go-docker:latest
     cap_add:
      - NET_ADMIN
     sysctls:
@@ -125,7 +123,7 @@ spec:
             privileged: true
       containers:
         - name: wireguard
-          image: masipcat/wireguard-go:latest
+          image: ghcr.io/iakat/wireguard-go-docker:latest
           command:
           - sh
           - -c
