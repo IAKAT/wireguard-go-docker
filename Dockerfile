@@ -1,14 +1,15 @@
-ARG GOLANG_VERSION=1.20
-ARG ALPINE_VERSION=3.18
+ARG GOLANG_VERSION=1.24
+ARG ALPINE_VERSION=3.21
 
 FROM golang:${GOLANG_VERSION}-alpine${ALPINE_VERSION} AS builder
 
-ARG wg_go_tag=0.0.20230223
+ARG wg_go_tag=0.0.20230223-mullvad-0.1.6
+
 ARG wg_tools_tag=v1.0.20210914
 
 RUN apk add --update git build-base libmnl-dev iptables
 
-RUN git clone https://git.zx2c4.com/wireguard-go && \
+RUN git clone https://github.com/mullvad/wireguard-go && \
     cd wireguard-go && \
     git checkout $wg_go_tag && \
     make && \
